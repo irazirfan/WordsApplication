@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace WordsApplication.Controllers
@@ -19,6 +17,13 @@ namespace WordsApplication.Controllers
         public WordController(ILogger<WordController> logger)
         {
             _logger = logger;
+        }
+
+        [Route("post")]
+        [HttpPost]
+        public IActionResult Post([FromQuery] string wordList, [FromHeader] string pageSize)
+        {   
+            return Ok( new { success = true, data = wordList, pageSize = pageSize });
         }
 
         [HttpGet]
