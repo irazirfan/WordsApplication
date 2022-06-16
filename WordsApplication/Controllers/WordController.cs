@@ -30,10 +30,10 @@ namespace WordsApplication.Controllers
 
         [Route("Get")]
         [HttpGet]
-        public async Task<Word> Get()
+        public async Task<IActionResult> Get()
         {
             var words = await _wordRepository.GetWords();
-            return words;
+            return Ok(words);
         }
     }
 }

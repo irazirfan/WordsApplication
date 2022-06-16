@@ -12,9 +12,13 @@ namespace WordsApplication.DataAccess.Implementations
         {
             _wordDbContext = wordDBContext;
         }
-        public async Task<Word> GetWords()
+        public async Task<string> GetWords()
         {
-            return await _wordDbContext.Word.SingleOrDefaultAsync();
+            string result;
+            var words = await _wordDbContext.Word.FirstOrDefaultAsync();
+            result = words.Words.Substring(0, words.Lines);
+
+            return result;
         }
 
         public async Task<Word> SaveWords(Word wordList, string pageSize)
