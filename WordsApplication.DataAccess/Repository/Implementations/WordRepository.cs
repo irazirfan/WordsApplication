@@ -12,11 +12,15 @@ namespace WordsApplication.DataAccess.Implementations
         {
             _wordDbContext = wordDBContext;
         }
-        public async Task<string> GetWords()
+        public async Task<string[]> GetWords()
         {
-            string result;
-            var words = await _wordDbContext.Word.FirstOrDefaultAsync();
-            result = words.Words.Substring(0, words.Lines);
+            var words = await _wordDbContext.Word.ToListAsync();
+            int count = words.Count;
+            string[] result = new string[count];
+            for (int i = 0; i < words.Count; i++)
+            {
+                result[i] = words[i].Words.Substring(0, words[i].Lines);
+            }
 
             return result;
         }
