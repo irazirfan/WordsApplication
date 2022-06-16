@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Threading.Tasks;
 using WordsApplication.Models;
-using Microsoft.EntityFrameworkCore;
+using WordsApplication.Repos;
 
 namespace WordsApplication.Controllers
 {
@@ -11,35 +10,30 @@ namespace WordsApplication.Controllers
     [Route("api/[controller]")]
     public class WordController : ControllerBase
     {
-        private readonly ILogger<WordController> _logger;
-        private readonly WordDBContext _wordDbContext;
+        private readonly IWordRepository _wordRepository;
 
-        public WordController(ILogger<WordController> logger, WordDBContext wordDBContext)
+        public WordController(IWordRepository wordRepository)
         {
-            _logger = logger;
-            _wordDbContext = wordDBContext;
+            _wordRepository = wordRepository;
         }
 
         [Route("post")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Word wordList, [FromHeader] string pageSize)
         {
-            Word word = new Word()
-            {
-                Lines = Convert.ToInt16(pageSize),
-                Words = wordList.Words
-            };
+            var res = await _wordRepository.SaveWords(wordList, pageSize);
 
-            _wordDbContext.Add(word);
-            await _wordDbContext.SaveChangesAsync();
-            
-            return Ok( new { success = true, data = wordList, pageSize = pageSize });
+            if (res == null)
+            {
+                return Ok(new { success = false, data = "", pageSize = pageSize });
+            }
+            return Ok(new { success = true, data = res, pageSize = pageSize });
         }
 
         [HttpGet]
         public async Task<Word> Get()
         {
-            var words = await _wordDbContext.Word.SingleOrDefaultAsync();
+            var words = await _wordRepository.GetWords();
             return words;
         }
     }

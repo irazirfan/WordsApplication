@@ -6,6 +6,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WordsApplication.Models;
 using Microsoft.EntityFrameworkCore;
+using WordsApplication.Repos;
+using WordsApplication.Repos.Implementations;
+using Microsoft.Extensions.Logging;
 
 namespace WordsApplication
 {
@@ -27,13 +30,20 @@ namespace WordsApplication
             services.AddDbContext<WordDBContext>(x =>
             {
                 x.UseSqlServer(connectionString);
+                x.UseLoggerFactory(_loggerFactory);
             });
+
+            services.AddSingleton(Configuration);
+            //Repository
+            services.AddScoped<IWordRepository, WordRepository>();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WordsApplication", Version = "v1" });
             });
+
         }
+        private readonly static ILoggerFactory _loggerFactory;
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
