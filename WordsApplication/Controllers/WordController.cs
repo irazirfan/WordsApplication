@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 using WordsApplication.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WordsApplication.Controllers
 {
@@ -20,7 +22,7 @@ namespace WordsApplication.Controllers
 
         [Route("post")]
         [HttpPost]
-        public IActionResult Post([FromBody] Word wordList, [FromHeader] string pageSize)
+        public async Task<IActionResult> Post([FromBody] Word wordList, [FromHeader] string pageSize)
         {
             Word word = new Word()
             {
@@ -29,15 +31,16 @@ namespace WordsApplication.Controllers
             };
 
             _wordDbContext.Add(word);
-            _wordDbContext.SaveChanges();
+            await _wordDbContext.SaveChangesAsync();
             
             return Ok( new { success = true, data = wordList, pageSize = pageSize });
         }
 
-        //[HttpGet]
-        //public IActionResult Get()
-        //{
-        //    return Ok(words);
-        //}
+        [HttpGet]
+        public async Task<Word> Get()
+        {
+            var words = await _wordDbContext.Word.SingleOrDefaultAsync();
+            return words;
+        }
     }
 }
