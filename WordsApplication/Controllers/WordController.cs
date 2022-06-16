@@ -5,7 +5,7 @@ using WordsApplication.DataAccess;
 namespace WordsApplication.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("Word")]
     public class WordController : ControllerBase
     {
         private readonly IWordRepository _wordRepository;
