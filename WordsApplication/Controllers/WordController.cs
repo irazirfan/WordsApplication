@@ -15,7 +15,7 @@ namespace WordsApplication.Controllers
             _wordRepository = wordRepository;
         }
 
-        [Route("post")]
+        [Route("Post")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Word wordList, [FromHeader] string pageSize)
         {
@@ -28,6 +28,7 @@ namespace WordsApplication.Controllers
             return Ok(new { success = true, data = res, pageSize = pageSize });
         }
 
+        [Route("Get")]
         [HttpGet]
         public async Task<Word> Get()
         {
