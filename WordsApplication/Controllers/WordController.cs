@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WordsApplication.Models;
-using WordsApplication.Repos;
+using WordsApplication.DataAccess;
 
 namespace WordsApplication.Controllers
 {

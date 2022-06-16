@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace WordsApplication.Models
+namespace WordsApplication.DataAccess
 {
     public class WordDBContext: DbContext
     {

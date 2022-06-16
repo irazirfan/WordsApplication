@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordsApplication", "WordsApplication\WordsApplication.csproj", "{2370D65D-FBF0-452A-8171-9C75ECBD6B32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordsApplication.WebApi", "WordsApplication\WordsApplication.WebApi.csproj", "{2370D65D-FBF0-452A-8171-9C75ECBD6B32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordsApplication.DataAccess", "WordsApplication.DataAccess\WordsApplication.DataAccess.csproj", "{B1A4C799-E23C-49C5-AC09-FBBE46BFE263}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2370D65D-FBF0-452A-8171-9C75ECBD6B32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2370D65D-FBF0-452A-8171-9C75ECBD6B32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2370D65D-FBF0-452A-8171-9C75ECBD6B32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1A4C799-E23C-49C5-AC09-FBBE46BFE263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1A4C799-E23C-49C5-AC09-FBBE46BFE263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1A4C799-E23C-49C5-AC09-FBBE46BFE263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1A4C799-E23C-49C5-AC09-FBBE46BFE263}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

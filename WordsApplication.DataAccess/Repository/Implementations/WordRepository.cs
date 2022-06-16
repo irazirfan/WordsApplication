@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
-using WordsApplication.Models;
 
-namespace WordsApplication.Repos.Implementations
+namespace WordsApplication.DataAccess.Implementations
 {
     public class WordRepository : IWordRepository
     {

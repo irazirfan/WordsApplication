@@ -4,10 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using WordsApplication.Models;
 using Microsoft.EntityFrameworkCore;
-using WordsApplication.Repos;
-using WordsApplication.Repos.Implementations;
+using WordsApplication.DataAccess;
+using WordsApplication.DataAccess.Implementations;
 
 namespace WordsApplication
 {

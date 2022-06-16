@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace WordsApplication.Models
+namespace WordsApplication.DataAccess
 {
     public class Word
     {

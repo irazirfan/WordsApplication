@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
-using WordsApplication.Models;
 
-namespace WordsApplication.Repos
+namespace WordsApplication.DataAccess
 {
     public interface IWordRepository
     {
