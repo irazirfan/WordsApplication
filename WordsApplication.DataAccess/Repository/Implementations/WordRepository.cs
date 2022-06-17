@@ -31,11 +31,11 @@ namespace WordsApplication.DataAccess.Implementations
                 {
                     result[j] = words[i].Words.Substring(startIndex, length);
                     startIndex += length;
-                }
-                int mod = words[i].Words.Length % words[i].Lines;
-                if (mod != 0)
-                {
-                    result[(words[i].Words.Length/words[i].Lines)] = words[i].Words.Substring(startIndex, mod);
+                    int mod = words[i].Words.Length % words[i].Lines;
+                    if (mod != 0)
+                    {
+                        result[j + 1] = words[i].Words.Substring(startIndex, mod);
+                    }
                 }
                 startIndex = 0;
             }
