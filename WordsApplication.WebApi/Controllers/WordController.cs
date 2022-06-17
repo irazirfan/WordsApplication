@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using WordsApplication.DataAccess;
 
@@ -23,9 +25,9 @@ namespace WordsApplication.Controllers
 
             if (res == null)
             {
-                return Ok(new { success = false, data = "", pageSize = pageSize });
+                return Ok(new { success = false });
             }
-            return Ok(new { success = true, data = res, pageSize = pageSize });
+            return Created(new Uri(Request.GetEncodedUrl() + "/" + wordList.Id), wordList);
         }
 
         [Route("Get")]
