@@ -15,11 +15,29 @@ namespace WordsApplication.DataAccess.Implementations
         public async Task<string[]> GetWords()
         {
             var words = await _wordDbContext.Word.ToListAsync();
-            int count = words.Count;
+            int startIndex = 0;
+            int count = 0;
+            for (int i = 0; i < words.Count; i++)
+            {
+                count += words[i].Words.Length / words[i].Lines;
+                if (words[i].Words.Length % words[i].Lines != 0)
+                    count++;
+            }
             string[] result = new string[count];
             for (int i = 0; i < words.Count; i++)
             {
-                result[i] = words[i].Words.Substring(0, words[i].Lines);
+                int length = words[i].Lines;
+                for (int j = 0; j < (words[i].Words.Length / words[i].Lines); j++)
+                {
+                    result[j] = words[i].Words.Substring(startIndex, length);
+                    startIndex += length;
+                }
+                int mod = words[i].Words.Length % words[i].Lines;
+                if (mod != 0)
+                {
+                    result[(words[i].Words.Length/words[i].Lines)] = words[i].Words.Substring(startIndex, mod);
+                }
+                startIndex = 0;
             }
 
             return result;
